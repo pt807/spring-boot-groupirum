@@ -1,3 +1,5 @@
+database: h2
+
 spring:
   h2:
     console:
@@ -12,11 +14,16 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
-        show_sql: true
         format_sql: true
+        highlight_sql: true
+  sql:
+    init:
+      schema-locations: classpath*:db/${database}/schema.sql
+      data-locations: classpath*:db/${database}/data.sql
+#      mode: always  # 모든 DB에 적용
 
 logging:
   level:
