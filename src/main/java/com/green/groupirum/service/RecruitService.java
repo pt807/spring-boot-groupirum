@@ -35,4 +35,21 @@ public class RecruitService {
         }
         return recruitDtoList;
     }
+
+    public RecruitDto getRecruit(Long id) {
+        Recruit recruit = recruitRepository.findById(id).get();
+        RecruitDto recruitDto = RecruitDto.builder()
+                .id(recruit.getId())
+                .title(recruit.getTitle())
+                .createdDate(recruit.getCreatedDate())
+                .member(recruit.getMember())
+                .game(recruit.getGame())
+                .replyList(recruit.getReplyList())
+                .personnel(recruit.getPersonnel())
+                .contact(recruit.getContact())
+                .content(recruit.getContent())
+                .build();
+
+        return recruitDto;
+    }
 }

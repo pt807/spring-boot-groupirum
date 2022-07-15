@@ -4,13 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>GroupIrum</title>
-    <link rel="icon" type="image/x-icon" href="images/icon.png"/>
-    <link rel="stylesheet" href="css/nicepage.css" media="screen">
-    <link rel="stylesheet" href="css/Contact.css" media="screen">
-    <script class="u-script" type="text/javascript" src="js/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <link rel="icon" type="image/x-icon" href="/images/icon.png"/>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/Contact.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
     <meta name="theme-color" content="#478ac9">
     <style>
+
         a:link { color: black; text-decoration: none;}
         a:visited { color: black; text-decoration: none;}
     </style>
@@ -19,7 +20,7 @@
 <header class="u-clearfix u-header u-header" id="sec-540d">
     <div class="u-clearfix u-sheet u-sheet-1">
         <a href="/" class="u-image u-logo u-image-1" data-image-width="346" data-image-height="63">
-            <img src="images/groupirumiconbk.png" class="u-logo-image u-logo-image-1">
+            <img src="/images/groupirumiconbk.png" class="u-logo-image u-logo-image-1">
         </a>
         <nav class="u-align-right u-menu u-menu-one-level u-offcanvas u-menu-1" data-position="nav"
              data-responsive-from="XS" data-submenu-level="on-click">
@@ -79,8 +80,8 @@
 <section class="u-align-left u-clearfix u-custom-color-1 u-section-1" src="" id="sec-3e43">
     <div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-large-text u-text u-text-variant u-text-1"> 이제는 빠르게 팀원을 찾을 수 있어요</p><span
-            class="u-file-icon u-icon u-icon-1"><img src="images/gamePadIcon.png" alt=""></span>
-        <h2 class="u-text u-text-default u-text-2" style="font-family: SpoqaHanSansNeo-Bold">팀원 찾기 사이트 "<span style="font-weight: 600;">그룹이룸</span>"을 소개합니다.&nbsp;
+            class="u-file-icon u-icon u-icon-1"><img src="/images/gamePadIcon.png"></span>
+        <h2 class="u-text u-text-default u-text-2" style="font-family: SpoqaHanSansNeo-Bold; color: white">팀원 찾기 사이트 "<span style="font-weight: 600;">그룹이룸</span>"을 소개합니다.&nbsp;
         </h2>
     </div>
 </section>
@@ -92,7 +93,7 @@
                     <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-1">
                         <a href="/ "
                            class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-1">
-                            <span class="u-file-icon u-icon u-icon-1"><img src="images/overWatch.png"></span>&nbsp;overwatch
+                            <span class="u-file-icon u-icon u-icon-1"><img src="/images/overWatch.png"></span>&nbsp;overwatch
                         </a>
                     </div>
                 </div>
@@ -100,7 +101,7 @@
                     <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-2">
                         <a href="/"
                            class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-2" style="margin-left: 6px;">
-                            <span class="u-file-icon u-icon u-icon-2"><img src="images/lolIcon.png"></span>&nbsp;League of Legends
+                            <span class="u-file-icon u-icon u-icon-2"><img src="/images/lolIcon.png"></span>&nbsp;League of Legends
                         </a>
                     </div>
                 </div>
@@ -108,7 +109,7 @@
                     <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-3">
                         <a href="/"
                            class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-3">
-                            <span class="u-file-icon u-icon u-icon-3"><img src="images/battleGroundIcon.png"></span>&nbsp;battle ground
+                            <span class="u-file-icon u-icon u-icon-3"><img src="/images/battleGroundIcon.png"></span>&nbsp;battle ground
                         </a>
                     </div>
                 </div>
@@ -117,21 +118,20 @@
         <div class="u-expanded-width u-list u-list-2">
             <div class="u-repeater u-repeater-2">
                 <th:block th:each="recruit : ${recruitList}">
-                    <a href="/">
-                        <div th:text="${recruit.id}" hidden></div>
+                    <a th:href="@{'/recruit/' + ${recruit.id}}">
                         <div class="u-border-2 u-border-grey-25 u-container-style u-hover-feature u-list-item u-radius-20 u-repeater-item u-shape-round u-list-item-4" style=" overflow-x: hidden; overflow-y: hidden">
                             <div class="u-container-layout u-similar-container u-container-layout-4">
                                 <th:block th:if="${#strings.equals(recruit.game.getName(), '오버워치')}">
                                     <img class="u-image u-image-circle u-preserve-proportions u-image-1"
-                                         src="images/overWatch.png?rand=2bc" data-image-width="512" data-image-height="512">
+                                         src="/images/overWatch.png?rand=2bc" data-image-width="512" data-image-height="512">
                                 </th:block>
                                 <th:block th:if="${#strings.equals(recruit.game.getName(), '리그오브레전드')}">
                                     <img class="u-image u-image-circle u-preserve-proportions u-image-1"
-                                         src="images/lolIcon.png?rand=2bc1" data-image-width="512" data-image-height="512">
+                                         src="/images/lolIcon.png?rand=2bc1" data-image-width="512" data-image-height="512">
                                 </th:block>
                                 <th:block th:if="${#strings.equals(recruit.game.getName(), '배틀그라운드')}">
                                     <img class="u-image u-image-circle u-preserve-proportions u-image-1"
-                                         src="images/battleGroundIcon.png?rand=2bc1" data-image-width="512" data-image-height="512">
+                                         src="/images/battleGroundIcon.png?rand=2bc1" data-image-width="512" data-image-height="512">
                                 </th:block>
                                 <p class="u-align-center u-small-text u-text u-text-variant u-text-1"><span th:text="${#temporals.format(recruit.createdDate, 'yyyy-MM-dd')}"></span></p>
                                 <h4 class="u-align-left u-subtitle u-text u-text-2"
@@ -139,9 +139,9 @@
                                     <span th:text="${recruit.title}"></span>
                                 </h4>
                                 <div style="margin-bottom: 10px">
-                                    <span class="u-file-icon u-icon u-icon-4" ><img src="images/viewIcon.png">
+                                    <span class="u-file-icon u-icon u-icon-4" ><img src="/images/viewIcon.png">
                                         <p class="u-text u-text-3" th:text="${recruit.views}" style="width: 30px; margin-left: 24px; margin-top: -10px"></p></span>
-                                    <span class="u-file-icon u-icon u-icon-5"><img src="images/replyIcon.png">
+                                    <span class="u-file-icon u-icon u-icon-5"><img src="/images/replyIcon.png">
                                         <p class="u-text u-text-5" th:text="${recruit.replyList.size()}" style="width: 30px; margin-left: 24px; margin-top: -10px"></p></span>
                                     <p class="u-text u-text-default u-text-3" >작성자:&nbsp;<span th:text="${recruit.member.getNickname()}"></span><br></p>
                                 </div>
@@ -159,11 +159,11 @@
     <div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-1"> 대표 : 김병훈, 박대준<br>이메일 : qwe@naver.com</p>
         <a class="u-image u-logo u-image-1" data-image-width="346" data-image-height="63">
-            <img src="images/groupirumiconbk.png" class="u-logo-image u-logo-image-1">
+            <img src="/images/groupirumiconbk.png" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
             <a class="u-social-url" target="_blank" data-type="Custom" title="Custom" href="https://github.com/pt807/spring-boot-groupirum"><span
-                    class="u-file-icon u-icon u-social-custom u-social-icon u-icon-1"><img src="images/gitIcon.png" alt=""></span>
+                    class="u-file-icon u-icon u-social-custom u-social-icon u-icon-1"><img src="/images/gitIcon.png"></span>
             </a>
         </div>
         <p class="u-align-center-lg u-align-center-md u-align-center-xl u-text u-text-2">© Copyright 2022. ptbh. All Rights Reserved.</p>
