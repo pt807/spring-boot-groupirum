@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title, pageCSS)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title th:text="${title}"></title>
+    <link rel="icon" type="image/x-icon" href="/images/icon.png"/>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" th:href="@{/css/{page}(page=${pageCSS})}" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="theme-color" content="#478ac9">
+    <style>
+        a:link { color: black; text-decoration: none;}
+        a:visited { color: black; text-decoration: none;}
+    </style>
+</head>
+</html>
