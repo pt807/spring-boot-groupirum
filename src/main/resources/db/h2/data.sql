@@ -2,11 +2,11 @@ INSERT INTO game VALUES (default, '오버워치');
 INSERT INTO game VALUES (default, '리그오브레전드');
 INSERT INTO game VALUES (default, '배틀그라운드');
 
-INSERT INTO member VALUES (default, 'gamer1@gamer.com', '게이머1');
-INSERT INTO member VALUES (default, 'gamer2@gamer.com', '게이머2');
-INSERT INTO member VALUES (default, 'gamer3@gamer.com', '게이머3');
-INSERT INTO member VALUES (default, 'gamer4@gamer.com', '게이머4');
-INSERT INTO member VALUES (default, 'gamer5@gamer.com', '게이머5');
+INSERT INTO member VALUES (default, 'gamer1@gamer.com', '게이머1', 'google000001', '1000', 'google', 'USER');
+INSERT INTO member VALUES (default, 'gamer2@gamer.com', '게이머2', 'google000002', '1001', 'google', 'USER');
+INSERT INTO member VALUES (default, 'gamer3@gamer.com', '게이머3', 'google000003', '1002', 'google', 'USER');
+INSERT INTO member VALUES (default, 'gamer4@gamer.com', '게이머4', 'google000004', '1003', 'google', 'USER');
+INSERT INTO member VALUES (default, 'gamer5@gamer.com', '게이머5', 'google000005', '1004', 'google', 'USER');
 
 INSERT INTO recruit VALUES (default, '탱커 장인 구함', '안녕하세요. 오버워치 탱커 장인 1명 구합니다.', 1, 'discord.com', 'HIRING', default, now(), now(), 1, 1);
 INSERT INTO recruit VALUES (default, '탑 구함', '안녕하세요. 다이아 이상 탑 라이너 구합니다.', 1, 'discord.com', 'HIRING', default, now(), now(), 2, 2);
