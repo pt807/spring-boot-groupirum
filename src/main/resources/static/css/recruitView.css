@@ -1,3 +1,7 @@
+textarea, p{
+  white-space: pre-line;
+}
+
 .u-section-1 .u-sheet-1 {
   min-height: 2238px;
 }
@@ -150,7 +154,7 @@
 
 .u-section-1 .u-line-4 {
   width: 912px;
-  margin: 51px auto 60px 104px;
+  margin: 51px auto 15px 104px;
 }
 
 .button-poison {
@@ -456,6 +460,7 @@
   .u-section-1 .u-text-16 {
     margin-left: 0;
     margin-right: 0;
+    width: 550px;
   }
 
   .u-section-1 .u-line-3 {
@@ -625,6 +630,7 @@
 
   .u-section-1 .u-text-16 {
     margin-top: 34px;
+    max-width: 540px;
   }
 
   .u-section-1 .u-line-3 {
@@ -802,6 +808,7 @@
     margin-top: 19px;
     margin-right: 15px;
     margin-left: -14px;
+    max-width: 340px;
   }
 
   .u-section-1 .u-line-3 {
@@ -814,7 +821,7 @@
   .u-section-1 .u-text-17 {
     margin-top: 22px;
     margin-right: 147px;
-    margin-left: 15px;
+    margin-left: -5px;
   }
 
   .u-section-1 .u-text-18 {
