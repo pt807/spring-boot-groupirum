@@ -1,6 +1,8 @@
 database: h2
 
 spring:
+  profiles.include: oauth
+
   h2:
     console:
       enabled: true
