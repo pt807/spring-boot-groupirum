@@ -30911,6 +30911,7 @@ li.active > a.u-button-style.u-button-style.u-border-active-grey-25 {
 .u-separator-grey-30:after {
   border-color: #b3b3b3;
   stroke: #b3b3b3;
+  resize: none;
 }
 .u-button-style.u-border-grey-30 {
   border-color: #b3b3b3 !important;
@@ -36616,6 +36617,7 @@ a.u-link.u-text-hover-grey-90:hover {
         {
             color: #ffffff !important;
             background-color: #bb99ff !important;
+            margin-bottom: 100px;
         }
 
         .u-button-style.u-custom-color-1:hover,

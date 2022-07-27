@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="ko">
-<head th:include="fragments/head :: head('GroupIrum', 'contact.css')"></head>
+<head th:replace="fragments/head :: head('GroupIrum', 'contact.css')"></head>
 <body data-home-page="Contact.html" data-home-page-title="Contact" class="u-body u-xl-mode">
 <header th:replace="fragments/header :: header"></header>
 <section class="u-align-left u-clearfix u-custom-color-1 u-section-1" id="sec-3e43">
@@ -79,8 +79,6 @@
         </div>
     </div>
 </section>
-
-<hr>
 <footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>

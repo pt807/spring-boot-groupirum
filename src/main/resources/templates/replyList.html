@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="font-size: 16px;" lang="ko">
+
+<div id="replyList">
+    <div th:each="reply : ${replyList}">
+        <input type="hidden" id="replyId" th:value="${reply.id}">
+        <th:block th:if="${reply.parent} == null">
+            <p class="u-small-text u-text u-text-variant u-text-14" th:text="${reply.member.getNickname()}"></p>
+            <!--기본 버튼 구성-->
+            <div style="width: 0px">
+                <th:block sec:authorize="isAuthenticated()">
+                    <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="editById([[${reply.id}]], event)" th:id="'updateReplyBtn' + ${reply.id}" style="width: 26px">
+                        <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">수정</p></a>
+                    <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
+                        <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
+                </th:block>
+                <a href="#" th:data-auth="${#authorization.expr('isAuthenticated()')}" th:onclick="Reply([[${reply.id}]], event)" th:id="'replyBtn' + ${reply.id}" style="width: 26px">
+                    <p th:data-auth="${#authorization.expr('isAuthenticated()')}" class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
+
+            </div>
+
+            <!--수정 버튼 클릭시 버튼 구성-->
+            <div style="display: none; margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
+                <a href="#" th:onclick="updateReply([[${reply.id}]], event)" style="width: 26px">
+                    <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">저장</p></a>
+                <a href="#" th:id="'cancelReplyBtn' + ${reply.id}" style="width: 26px">
+                    <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">취소</p></a>
+            </div>
+
+            <p class="u-small-text u-text u-text-variant u-text-15" th:text="${#temporals.format(reply.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+            <span class="u-file-icon u-icon u-icon-1"><img src="/images/time.png"></span>
+            <p class="u-text u-text-16" th:id="'content' + ${reply.id}" th:text="${reply.content}"></p>  <!--h:90 w:550-->
+
+            <!--댓글 수정 폼-->
+            <div style="display: none" th:id="'updateContentDiv' + ${reply.id}">
+                        <textarea  class="u-text u-text-16" th:id="'updateContent' + ${reply.id}" th:text="${reply.content}"
+                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px"></textarea>
+            </div>
+            <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-3"></div>
+
+            <!--답글 구역-->
+            <div style="display: none" th:id="'replyForm' + ${reply.id}">
+                <p sec:authorize="isAuthenticated()" id="authMember" th:data-id="${#authentication.principal.member.id}" class="u-small-text u-text u-text-variant u-text-17" th:text="'⤷ &nbsp' + ${#authentication.principal.member.nickname}"></p>
+                <div style=" margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
+                    <a href="#" th:id="'replySave' + ${reply.id}" style="width: 26px">
+                        <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">저장</p></a>
+                    <a href="#" th:id="'replyCancel' + ${reply.id}" style="width: 26px">
+                        <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">취소</p></a>
+                </div>
+                <div th:id="'updateContentDiv' + ${reply.id}">
+                            <textarea class="u-text u-text-16" th:id="'replyContent' + ${reply.id}"
+                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="답글을 입력해주세요"></textarea>
+                </div>
+                <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>
+            </div>
+        </th:block>
+
+        <th:block th:if="${reply.parent} != null ">
+            <p class="u-small-text u-text u-text-variant u-text-17" th:text="${reply.member.getNickname()}"></p>
+            <div class="reply-poison" style="width: 0px">
+                <th:block sec:authorize="isAuthenticated()">
+                    <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="editById([[${reply.id}]], event)" th:id="'updateReplyBtn' + ${reply.id}" style="width: 26px">
+                        <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">수정</p></a>
+                    <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
+                        <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
+                </th:block>
+                <a href="#" th:id="'ReplyBtn' + ${reply.id}" style="visibility: hidden; width: 26px">
+                    <p class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
+            </div>
+            <div style="display: none; margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
+                <a href="#" th:onclick="updateReply([[${reply.id}]], event)" style="width: 26px">
+                    <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">저장</p></a>
+                <a href="#" th:id="'cancelReplyBtn' + ${reply.id}" style="width: 26px">
+                    <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">취소</p></a>
+            </div>
+
+            <p class="u-small-text u-text u-text-variant u-text-18" th:text="${#temporals.format(reply.modifiedDate, 'yyyy-MM-dd HH:mm:ss')}"></p></a>
+            <span class="u-file-icon u-icon u-icon-2"><img src="/images/time.png"></span>
+            <p class="u-text u-text-19" th:id="'content' + ${reply.id}" th:text="${reply.content}"></p>
+            <div style="display: none" th:id="'updateContentDiv' + ${reply.id}">
+                        <textarea  class="u-text u-text-16" th:id="'updateContent' + ${reply.id}" th:text="${reply.content}"
+                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px"></textarea>
+            </div>
+            <span class="u-file-icon u-icon u-icon-3"><img src="/images/reply.png"></span>
+            <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>
+        </th:block>
+    </div>
+</div>
+</html>

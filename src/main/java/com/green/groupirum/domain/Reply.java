@@ -1,6 +1,9 @@
 package com.green.groupirum.domain;
 
+import com.green.groupirum.dto.RecruitDto;
+import com.green.groupirum.dto.ReplyDto;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,5 +38,38 @@ public class Reply extends TimeEntity {
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE)
     private List<Reply> child = new ArrayList<>();
+
+    //연관관계 메서드
+    public void setRecruit(Recruit recruit) {
+        if (this.recruit != null) {
+            this.recruit.getReplyList().remove(this);
+        }
+        this.recruit = recruit;
+        recruit.getReplyList().add(this);
+    }
+
+    public void setParent(Reply parent) {
+        if (this.parent != null) {
+            this.parent.getChild().remove(this);
+        }
+        this.parent = parent;
+        parent.getChild().add(this);
+    }
+
+    public void updateReply(String content) {
+        this.content = content;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    @Builder
+    public Reply(String content, Member member, Recruit recruit, Reply parent) {
+        this.content = content;
+        this.member = member;
+        this.recruit = recruit;
+        this.parent = parent;
+    }
 
 }
