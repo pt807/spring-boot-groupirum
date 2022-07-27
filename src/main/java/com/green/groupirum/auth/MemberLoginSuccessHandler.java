@@ -25,15 +25,26 @@ public class MemberLoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
+        String prevPage = (String) request.getSession().getAttribute("prevPage");
+        if (prevPage != null) {
+            request.getSession().removeAttribute("prevPage");
+        }
+
+        String uri = "/";
+
         AuthMemberDTO authMember = (AuthMemberDTO) authentication.getPrincipal();
         Member member = authMember.getMember();
         boolean isNotChanged = member.getNickname().equals(member.getNicknameOrig());
         if (isNotChanged) {
-            redirectStrategy.sendRedirect(request, response, "/oauth/join");
+            uri = "/oauth/join";
         } else if (savedRequest != null) {
-            redirectStrategy.sendRedirect(request, response, savedRequest.getRedirectUrl());
-        } else {
-            redirectStrategy.sendRedirect(request, response, "/");
+            uri = savedRequest.getRedirectUrl();
+        } else if (prevPage != null && !prevPage.equals("")) {
+            uri = prevPage;
         }
+
+        redirectStrategy.sendRedirect(request, response, uri);
+
     }
+
 }

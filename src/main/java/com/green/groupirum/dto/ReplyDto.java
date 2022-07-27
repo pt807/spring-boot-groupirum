@@ -15,6 +15,7 @@ public class ReplyDto {
     private String content;
     private Member member;
     private String replyNickname;
+    private Long memberId;
     private Long recruitId;
     private Long parent;
     private LocalDateTime createdDate;

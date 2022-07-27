@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="ko">
-<head th:include="fragments/head :: head(${recruit.title}, 'recruitView.css')"></head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="font-size: 16px;" lang="ko">
+<head th:replace="fragments/head :: head(${recruit.title}, 'recruitView.css')"></head>
 <body class="u-body u-xl-mode">
 <header th:replace="fragments/header :: header"></header>
-<section class="u-border-2 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1"
+<section class="u-border-1 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1"
          id="sec-2994">
     <div class="u-clearfix u-sheet u-sheet-1">
             <th:block th:if="${#strings.equals(recruit.game.getName(), '오버워치')}">
@@ -24,8 +24,12 @@
         <p class="u-small-text u-text u-text-variant u-text-2" th:text="${'작성자: ' + recruit.member.getNickname()}"></p>
         <p class="u-small-text u-text u-text-variant u-text-3" th:text="${#temporals.format(recruit.createdDate, 'YYYY-MM-dd')}"></p>
         <div class="button-poison">
-            <a href="/"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>
-            <a href="/"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>
+            <th:block sec:authorize="isAuthenticated()">
+                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>
+                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>
+<!--                <a th:if="${member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>-->
+<!--                <a th:if="${member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>-->
+            </th:block>
         </div>
         <div class="u-border-2 u-border-grey-25 u-expanded-width-sm u-expanded-width-xs u-line u-line-horizontal u-opacity u-opacity-70 u-line-1"></div>
         <h4 class="u-text u-text-4" th:text="${recruit.game.getName()}"></h4>
@@ -43,31 +47,38 @@
         <div class="u-expanded-width-md u-expanded-width-sm u-form u-form-1">
             <form method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
                   source="custom" name="form" id="reply-form" style="padding: 0px;">
+                <th:block sec:authorize="isAuthenticated()">
+                    <input type="hidden" id="memberId" name="memberId" th:value="${#authentication.principal.member.id}">
+                </th:block>
                 <input type="hidden" id="recruitId" name="recruitId" th:value="${recruit.id}">
                 <div class="u-form-group u-form-message">
-                    <label for="content" class="u-label" th:text="${'댓글 ' + recruit.replyList.size() + '개'}"></label>
+                    <label for="content" class="u-label" id="replyCount" th:text="${'댓글 ' + recruit.replyList.size() + '개'}"></label>
                     <textarea placeholder="댓글을 입력하세요." rows="4" cols="50" id="content" name="message"
                               class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-20 u-white"
-                              required=""></textarea>
+                              th:data-auth="${#authorization.expr('isAuthenticated()')}"></textarea>
                 </div>
                 <div class="u-align-right u-form-group u-form-submit">
                     <a class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-radius-20">Submit</a>
-                    <input type="submit" value="submit" class="u-form-control-hidden">
+                    <input type="submit" value="submit" class="u-form-control-hidden" th:data-auth="${#authorization.expr('isAuthenticated()')}">
                 </div>
             </form>
         </div>
         <div id="replyList">
             <div th:each="reply : ${replyList}">
+                <input type="hidden" id="replyId" th:value="${reply.id}">
                 <th:block th:if="${reply.parent} == null">
                     <p class="u-small-text u-text u-text-variant u-text-14" th:text="${reply.member.getNickname()}"></p>
                     <!--기본 버튼 구성-->
                     <div style="width: 0px">
-                        <a href="#" th:onclick="editById([[${reply.id}]], event)" th:id="'updateReplyBtn' + ${reply.id}" style="width: 26px">
-                            <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">수정</p></a>
-                        <a href="#" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
-                            <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
-                        <a href="#" th:onclick="Reply([[${reply.id}]], event)" th:id="'ReplyBtn' + ${reply.id}" style="width: 26px">
-                            <p class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="editById([[${reply.id}]], event)" th:id="'updateReplyBtn' + ${reply.id}" style="width: 26px">
+                                <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">수정</p></a>
+                            <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
+                                <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
+                        </th:block>
+                            <a href="#" th:data-auth="${#authorization.expr('isAuthenticated()')}" th:onclick="Reply([[${reply.id}]], event)" th:id="'replyBtn' + ${reply.id}" style="width: 26px">
+                                <p th:data-auth="${#authorization.expr('isAuthenticated()')}" class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
+
                     </div>
 
                     <!--수정 버튼 클릭시 버튼 구성-->
@@ -91,7 +102,7 @@
 
                     <!--답글 구역-->
                     <div style="display: none" th:id="'replyForm' + ${reply.id}">
-                        <p class="u-small-text u-text u-text-variant u-text-17" th:text="'⤷ &nbsp' + ${reply.member.getNickname()}"></p>
+                        <p sec:authorize="isAuthenticated()" id="authMember" th:data-id="${#authentication.principal.member.id}" class="u-small-text u-text u-text-variant u-text-17" th:text="'⤷ &nbsp' + ${#authentication.principal.member.nickname}"></p>
                         <div style=" margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
                             <a href="#" th:id="'replySave' + ${reply.id}" style="width: 26px">
                                 <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">저장</p></a>
@@ -109,12 +120,14 @@
                 <th:block th:if="${reply.parent} != null ">
                     <p class="u-small-text u-text u-text-variant u-text-17" th:text="${reply.member.getNickname()}"></p>
                     <div class="reply-poison" style="width: 0px">
-                        <a href="#" th:onclick="editById([[${reply.id}]], event)" th:id="'updateReplyBtn' + ${reply.id}" style="width: 26px">
-                            <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">수정</p></a>
-                        <a href="#" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
-                            <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
-                        <a href="#" th:id="'ReplyBtn' + ${reply.id}" style="visibility: hidden; width: 26px">
-                            <p class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="editById([[${reply.id}]], event)" th:id="'updateReplyBtn' + ${reply.id}" style="width: 26px">
+                                <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">수정</p></a>
+                            <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
+                                <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
+                        </th:block>
+                            <a href="#" th:id="'ReplyBtn' + ${reply.id}" style="visibility: hidden; width: 26px">
+                                <p class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
                     </div>
                     <div style="display: none; margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
                         <a href="#" th:onclick="updateReply([[${reply.id}]], event)" style="width: 26px">
@@ -137,7 +150,6 @@
         </div>
     </div>
 </section>
-<hr>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script src="/js/view.js"></script>
 </body>

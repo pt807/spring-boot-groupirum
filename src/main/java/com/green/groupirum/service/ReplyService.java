@@ -25,7 +25,7 @@ public class ReplyService {
     @Transactional
     public void saveReply(ReplyDto replyDto) {
         Recruit recruit = recruitRepository.findById(replyDto.getRecruitId()).get();
-        Member member = memberRepository.findById(1L).get();
+        Member member = memberRepository.findById(replyDto.getMemberId()).get();
 
         Reply reply = replyDto.toEntity();//?
 

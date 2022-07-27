@@ -1,12 +1,13 @@
 const div = document.querySelector('#replyDiv');
 const recruitId = document.getElementById('recruitId').value;
+// const memberId = document.getElementById('memberId').value;
+const replyId = document.getElementById('replyId').value;
 
 //댓글 작성 로직
 document.getElementById('reply-form').addEventListener('submit', async (e) => {
     e.preventDefault(); //새로 실생되는것을 막아줌 submit은 작동됨
     const content = e.target.content.value;
-    // const replyNickname = document.getElementById('replyNickname'); //원래는 그로인 한사람으로
-    const replyNickname = "게이머1";
+    const memberId = e.target.memberId.value;
     if (!content) {
         return alert('댓글을 입력해주세요');
     }
@@ -16,9 +17,9 @@ document.getElementById('reply-form').addEventListener('submit', async (e) => {
             'content-type': 'application/json',
         },
         body: JSON.stringify({
+            memberId: memberId,
             recruitId: recruitId,
             content: content,
-            replyNickname: replyNickname,
         }),
     })
         .then(() => {
@@ -95,6 +96,9 @@ function deleteReply(id, e) {
 //댓글 답글 로직
 const Reply = (id, e) => {
     e.preventDefault();
+    if (e.target.dataset.auth == 'false') {
+        return;
+    }
     document.getElementById(`replyForm${id}`).style.display = "block";
     document.getElementById(`replyCancel${id}`).addEventListener("click", (e) => {
         e.preventDefault();
@@ -103,7 +107,7 @@ const Reply = (id, e) => {
     document.getElementById(`replySave${id}`).addEventListener('click', e => {
         e.preventDefault();
         const content = document.getElementById(`replyContent${id}`).value;
-        const replyNickname = "답글 작성자";
+        const memberId = document.getElementById('authMember').dataset.id;
         if (!content) {
             return alert('답글을 입력해주세요');
         }
@@ -116,7 +120,7 @@ const Reply = (id, e) => {
                 recruitId: recruitId,
                 content: content,
                 parent: id,
-                replyNickname: replyNickname,
+                memberId: memberId,
             }),
         })
             .then(() => {
@@ -136,8 +140,57 @@ function getReplies(id) {
         .then((res) => res.text())
         .then((text) => {
             document.getElementById('replyList').innerHTML = text;
+            $("#replyCount").load(window.location.href + " #replyCount");
         })
         .catch((err) => {
             console.log('실패', err)
         });
 }
+
+//답글 버튼 권한 확인
+document.querySelector('body').addEventListener('click', (e) => {
+    let target = e.target;
+    if (!target.dataset.auth) {
+        return;
+    }
+    if (target.dataset.auth == 'false') {
+        if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
+            location.href = "/oauth/login";
+        } else {
+            return;
+        }
+    }
+})
+
+//댓글 작성 권한 확인
+// document.querySelector('#reply-form').addEventListener('click', (e) => {
+//     let textarea = e.target;
+//
+//     if (textarea.tagName !== 'TEXTAREA' || !textarea.dataset.auth) {
+//         return;
+//     }
+//
+//     if (textarea.dataset.auth == 'false') {
+//         if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
+//             location.href = "/oauth/login";
+//         } else {
+//             return;
+//         }
+//     }
+// });
+
+// //댓글 제출 버튼 권한 확인
+// document.querySelector('#reply-form').addEventListener('click', (e) => {
+//     let input = e.target;
+//
+//     if (input.tagName !== 'INPUT' || !input.dataset.auth) {
+//         return;
+//     }
+//     if (input.dataset.auth == 'false') {
+//         if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
+//             location.href = "/oauth/login";
+//         } else {
+//             return;
+//         }
+//     }
+// })

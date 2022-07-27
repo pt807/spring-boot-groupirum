@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequiredArgsConstructor
 public class OAuthController {
@@ -19,7 +21,12 @@ public class OAuthController {
 
     @PreAuthorize("isAnonymous()")
     @GetMapping("/oauth/login")
-    public String showLoginForm() {
+    public String showLoginForm(HttpServletRequest request) {
+        String uri = request.getHeader("Referer");
+        if (uri != null && !uri.contains("/oauth/login")) {
+            request.getSession().setAttribute("prevPage", uri);
+        }
+
         return "login";
     }
 
