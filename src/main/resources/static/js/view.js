@@ -1,7 +1,5 @@
 const div = document.querySelector('#replyDiv');
 const recruitId = document.getElementById('recruitId').value;
-// const memberId = document.getElementById('memberId').value;
-const replyId = document.getElementById('replyId').value;
 
 //댓글 작성 로직
 document.getElementById('reply-form').addEventListener('submit', async (e) => {
@@ -37,7 +35,7 @@ const editById = (id, e) => {
 
     document.getElementById(`updateReplyBtn${id}`).style.display = "none";
     document.getElementById(`deleteReplyBtn${id}`).style.display = "none";
-    document.getElementById(`ReplyBtn${id}`).style.display = "none";
+    document.getElementById(`replyBtn${id}`).style.display = "none";
     document.getElementById(`content${id}`).style.display = "none";
     document.getElementById(`updateContentDiv${id}`).style.display = "block";
     document.getElementById(`updateContentBtn${id}`).style.display = "block";
@@ -45,7 +43,7 @@ const editById = (id, e) => {
         e.preventDefault();
         document.getElementById(`updateReplyBtn${id}`).style.display = "block";
         document.getElementById(`deleteReplyBtn${id}`).style.display = "block";
-        document.getElementById(`ReplyBtn${id}`).style.display = "block";
+        document.getElementById(`replyBtn${id}`).style.display = "block";
         document.getElementById(`content${id}`).style.display = "block";
         document.getElementById(`updateContentDiv${id}`).style.display = "none";
         document.getElementById(`updateContentBtn${id}`).style.display = "none";
@@ -154,6 +152,7 @@ document.querySelector('body').addEventListener('click', (e) => {
         return;
     }
     if (target.dataset.auth == 'false') {
+        document.getElementById('content').readOnly = true;
         if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
             location.href = "/oauth/login";
         } else {
@@ -162,35 +161,3 @@ document.querySelector('body').addEventListener('click', (e) => {
     }
 })
 
-//댓글 작성 권한 확인
-// document.querySelector('#reply-form').addEventListener('click', (e) => {
-//     let textarea = e.target;
-//
-//     if (textarea.tagName !== 'TEXTAREA' || !textarea.dataset.auth) {
-//         return;
-//     }
-//
-//     if (textarea.dataset.auth == 'false') {
-//         if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
-//             location.href = "/oauth/login";
-//         } else {
-//             return;
-//         }
-//     }
-// });
-
-// //댓글 제출 버튼 권한 확인
-// document.querySelector('#reply-form').addEventListener('click', (e) => {
-//     let input = e.target;
-//
-//     if (input.tagName !== 'INPUT' || !input.dataset.auth) {
-//         return;
-//     }
-//     if (input.dataset.auth == 'false') {
-//         if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
-//             location.href = "/oauth/login";
-//         } else {
-//             return;
-//         }
-//     }
-// })

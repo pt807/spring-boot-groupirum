@@ -1,7 +1,5 @@
 package com.green.groupirum.domain;
 
-import com.green.groupirum.dto.RecruitDto;
-import com.green.groupirum.dto.ReplyDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
