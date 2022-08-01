@@ -27,12 +27,13 @@ textarea, p{
 
 .u-section-1 .u-line-1 {
   width: 912px;
-  margin: 30px auto 0;
+  /*margin: 30px auto 0;*/
 }
 
 .u-section-1 .u-text-4 {
   font-weight: 700;
   margin: 38px 570px 0 285px;
+  min-inline-size: max-content;
 }
 
 .u-section-1 .u-text-5 {
@@ -56,6 +57,7 @@ textarea, p{
 .u-section-1 .u-text-9 {
   font-weight: 700;
   margin: -28px 570px 0 285px;
+  inline-size: max-content;
 }
 
 .u-section-1 .u-text-10 {
@@ -195,14 +197,14 @@ textarea, p{
 
   .u-section-1 .u-line-1 {
     height: 0;
-    margin-top: 51px;
+    margin-top: 20px;
   }
 
   .u-section-1 .u-text-4 {
     width: auto;
     margin-top: 51px;
     margin-right: 490px;
-    margin-left: 220px;
+    margin-left: 200px;
   }
 
   .u-section-1 .u-text-5 {
@@ -231,7 +233,7 @@ textarea, p{
   .u-section-1 .u-text-9 {
     width: auto;
     margin-right: 490px;
-    margin-left: 220px;
+    margin-left: 200px;
   }
 
   .u-section-1 .u-text-10 {
@@ -376,7 +378,7 @@ textarea, p{
 
   .u-section-1 .u-line-1 {
     width: 720px;
-    margin-top: 115px;
+    margin-top: 20px;
   }
 
   .u-section-1 .u-text-4 {
@@ -542,7 +544,7 @@ textarea, p{
   }
 
   .u-section-1 .u-line-1 {
-    margin-top: 51px;
+    margin-top: 20px;
     margin-right: initial;
     margin-left: initial;
     width: auto;

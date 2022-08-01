@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="font-size: 16px;" lang="ko">
+<head th:replace="fragments/head :: head('GroupIrum', 'recruit.css')"></head>
+<body class="u-body u-xl-mode">
+<header th:replace="fragments/header :: header"></header>
+<section class="u-border-1 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1" id="sec-2be0">
+    <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+        <h4 class="u-text u-text-default u-text-1">수정할 정보를 입력해주세요.</h4>
+        <div class="u-border-2 u-border-grey-dark-1 u-line u-line-horizontal u-opacity u-opacity-30 u-line-1"></div>
+        <div class="u-form u-form-1">
+            <form th:action="@{'/recruit/' + ${recruit.id}}" method="#" th:method="put" class="u-clearfix u-form-spacing-30 u-form-vertical2 u-inner-form" style="padding: 50px;">
+<!--                <input type="hidden" name="_method" value="put"/>-->
+                <input type="hidden" name="memberId" th:value="${#authentication.principal.member.id}">
+                <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-1">
+                    <label for="select-72fb" class="u-label u-label-1">모집 게임</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-72fb" name="gameName"
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
+                                required="" th:value="${recruit.game.getName()}">
+                            <option th:selected="${recruit.game.getName()} == '오버워치'">오버워치</option>
+                            <option th:selected="${recruit.game.getName()} == '리그오브레전드'">리그오브레전드</option>
+                            <option th:selected="${recruit.game.getName()} == '배틀그라운드'">배틀그라운드</option>
+                        </select>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
+                            <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-2">
+                    <label for="select-5026" class="u-label u-label-2">모집 인원</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-5026" name="personnel"
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
+                                required="" th:value="${recruit.personnel}">
+                            <option th:selected="${recruit.personnel} == 1" value="1">1명</option>
+                            <option th:selected="${recruit.personnel} == 2" value="2">2명</option>
+                            <option th:selected="${recruit.personnel} == 3" value="3">3명</option>
+                            <option th:selected="${recruit.personnel} == 4" value="4">4명</option>
+                            <option th:selected="${recruit.personnel} == 5" value="5">5명</option>
+                            <option th:selected="${recruit.personnel} == 6" value="6">6명</option>
+                            <option th:selected="${recruit.personnel} == 7" value="7">7명</option>
+                            <option th:selected="${recruit.personnel} == 8" value="8">8명</option>
+                            <option th:selected="${recruit.personnel} == 9" value="9">9명</option>
+                            <option th:selected="${recruit.personnel} == 10" value="10">10명</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
+                            <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-3">
+                    <label for="select-15dd" class="u-label u-label-3">연락 수단</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-15dd" name="contact"
+                                class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
+                                required="" th:selected="${recruit.contact}">
+                            <option th:selected="${recruit.contact} == '디스코드'">디스코드</option>
+                            <option th:selected="${recruit.contact} == '카카오톡 오픈채팅'">카카오톡 오픈채팅</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
+                            <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-4">
+                    <label for="date-24f5" class="u-label u-label-4">모집 날짜</label>
+                    <input type="date" placeholder="YYYY-MM-DD" id="date-24f5" name="recruitDate"
+                           class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-4"
+                           required="" th:value="${recruit.recruitDate}">
+                </div>
+                <div class="u-form-group u-form-group-5">
+                    <label for="text-f15c" class="u-form-control-hidden u-label u-label-5"></label>
+                    <input type="text" id="text-f15c" name="contactAddress"
+                           class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
+                           required="" placeholder="연락 수단의 주소를 입력해주세요. ex) https://discord.com" th:value="${recruit.contactAddress}">
+                </div>
+                <div class="u-form-group u-form-group-6">
+                    <label for="text-cf0f" class="u-label u-label-6">제목</label>
+                    <input type="text" id="text-cf0f" name="title"
+                           class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
+                           required="" th:value="${recruit.title}">
+                </div>
+                <div class="u-form-group u-form-textarea u-form-group-7">
+                    <label for="textarea-1ac8" class="u-form-control-hidden u-label u-label-7"></label>
+                    <textarea rows="10" cols="50" id="textarea-1ac8" name="content"
+                              class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white" required="" th:text="${recruit.content}"></textarea>
+                </div>
+                <input
+                   class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-radius-10 u-btn-1"
+                   type="submit" role="button" th:value="수정"><br>
+                <input type="reset" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-radius-10 u-btn-2"
+                   style="color: white; background-color: #b8b1d4" th:value="취소">
+            </form>
+        </div>
+    </div>
+</section>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script>
+    //오늘날짜 이전 날짜 제한
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1;
+    let yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("date-24f5").setAttribute("min", today);
+</script>
+</body>
+</html>
