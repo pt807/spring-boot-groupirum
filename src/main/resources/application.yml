@@ -3,6 +3,11 @@ database: h2
 spring:
   profiles.include: oauth
 
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
   h2:
     console:
       enabled: true

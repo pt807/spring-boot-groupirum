@@ -25,20 +25,22 @@
         <p class="u-small-text u-text u-text-variant u-text-3" th:text="${#temporals.format(recruit.createdDate, 'YYYY-MM-dd')}"></p>
         <div class="button-poison">
             <th:block sec:authorize="isAuthenticated()">
-                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>
-                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>
-<!--                <a th:if="${member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>-->
-<!--                <a th:if="${member.id} == ${recruit.member.id}" href="/"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>-->
+                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" th:href="@{'/recruit/update/' + ${recruit.id}}"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>
+                <form th:action="@{'/recruit/' + ${recruit.id}}" method="#" th:method="delete" id="form">
+                    <!--RESTful API 작성을 위해 hiddenHttpMethodFilter를 이용함 form 태그의 method는 post이지만, 실제로는 컨트롤러에서 delete로 매핑-->
+<!--                    <input type="hidden" name="_method" value="delete"/>-->
+                    <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="#" th:onclick="submit(event)"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>
+                </form>
             </th:block>
         </div>
-        <div class="u-border-2 u-border-grey-25 u-expanded-width-sm u-expanded-width-xs u-line u-line-horizontal u-opacity u-opacity-70 u-line-1"></div>
+        <div class="u-border-2 u-border-grey-25 u-expanded-width-sm u-expanded-width-xs u-line u-line-horizontal u-opacity u-opacity-70 u-line-1" style="margin: 10px auto 0;"></div>
         <h4 class="u-text u-text-4" th:text="${recruit.game.getName()}"></h4>
         <h4 class="u-text u-text-default u-text-5">모집인원</h4>
         <h4 class="u-text u-text-6" th:text="${recruit.personnel}"></h4>
         <h4 class="u-text u-text-default u-text-7">모집 게임</h4>
-        <h4 class="u-text u-text-8" th:text="${#temporals.format(recruit.createdDate, 'MM-dd &nbsp HH:mm')}"></h4>
-        <h4 class="u-text u-text-9" th:text="${recruit.contact}"></h4>
-        <h4 class="u-text u-text-default u-text-10">시작 시간</h4>
+        <h4 class="u-text u-text-8" th:text="${#temporals.format(recruit.recruitDate, 'YYYY-MM-dd')}"></h4>
+        <a th:href="${recruit.contactAddress}" target = "_blank"><h4 class="u-text u-text-9" th:text="${recruit.contact} + '&nbsp🔍'"></h4></a>
+        <h4 class="u-text u-text-default u-text-10">시작 날짜</h4>
         <h4 class="u-text u-text-default u-text-11">연락 수단</h4>
         <h2 class="u-text u-text-default u-text-12">파티 소개</h2>
         <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-line u-line-horizontal u-opacity u-opacity-70 u-line-2"></div>
@@ -78,7 +80,6 @@
                         </th:block>
                             <a href="#" th:data-auth="${#authorization.expr('isAuthenticated()')}" th:onclick="Reply([[${reply.id}]], event)" th:id="'replyBtn' + ${reply.id}" style="width: 26px">
                                 <p th:data-auth="${#authorization.expr('isAuthenticated()')}" class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
-
                     </div>
 
                     <!--수정 버튼 클릭시 버튼 구성-->
@@ -111,7 +112,7 @@
                         </div>
                         <div th:id="'updateContentDiv' + ${reply.id}">
                             <textarea class="u-text u-text-16" th:id="'replyContent' + ${reply.id}"
-                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="답글을 입력해주세요"></textarea>
+                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="&nbsp답글을 입력해주세요"></textarea>
                         </div>
                         <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>
                     </div>
@@ -126,7 +127,7 @@
                             <a href="#" th:if="${#authentication.principal.member.id} == ${reply.member.id}" th:onclick="deleteReply([[${reply.id}]], event)" th:id="'deleteReplyBtn' + ${reply.id}" style="width: 26px">
                                 <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">삭제</p></a>
                         </th:block>
-                            <a href="#" th:id="'ReplyBtn' + ${reply.id}" style="visibility: hidden; width: 26px">
+                            <a href="#" th:id="'replyBtn' + ${reply.id}" style="visibility: hidden; width: 26px">
                                 <p class="u-small-text u-text u-text-variant u-text-22" style="width: 26px">답글</p></a>
                     </div>
                     <div style="display: none; margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
@@ -152,5 +153,6 @@
 </section>
 <footer th:replace="fragments/footer :: footer"></footer>
 <script src="/js/view.js"></script>
+<script src="/js/recruit.js"></script>
 </body>
 </html>
