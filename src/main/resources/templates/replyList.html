@@ -41,7 +41,7 @@
             <div style="display: none" th:id="'replyForm' + ${reply.id}">
                 <p sec:authorize="isAuthenticated()" id="authMember" th:data-id="${#authentication.principal.member.id}" class="u-small-text u-text u-text-variant u-text-17" th:text="'⤷ &nbsp' + ${#authentication.principal.member.nickname}"></p>
                 <div style=" margin-top: 5px; width: 0px" th:id="'updateContentBtn' + ${reply.id}">
-                    <a href="#" th:id="'replySave' + ${reply.id}" style="width: 26px">
+                    <a href="#" th:id="'replySave' + ${reply.id}" th:onclick="replySave([[${reply.id}]], event)"style="width: 26px">
                         <p class="u-small-text u-text u-text-variant u-text-20" style="width: 26px">저장</p></a>
                     <a href="#" th:id="'replyCancel' + ${reply.id}" style="width: 26px">
                         <p class="u-small-text u-text u-text-variant u-text-21" style="width: 26px">취소</p></a>
