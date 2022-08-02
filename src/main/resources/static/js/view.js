@@ -1,5 +1,6 @@
 const div = document.querySelector('#replyDiv');
 const recruitId = document.getElementById('recruitId').value;
+const replyId = document.getElementById('replyId').value;
 
 //댓글 작성 로직
 document.getElementById('reply-form').addEventListener('submit', async (e) => {
@@ -32,7 +33,6 @@ document.getElementById('reply-form').addEventListener('submit', async (e) => {
 //댓글 수정 버튼 로직
 const editById = (id, e) => {
     e.preventDefault();
-
     document.getElementById(`updateReplyBtn${id}`).style.display = "none";
     document.getElementById(`deleteReplyBtn${id}`).style.display = "none";
     document.getElementById(`replyBtn${id}`).style.display = "none";
@@ -45,6 +45,8 @@ const editById = (id, e) => {
         document.getElementById(`deleteReplyBtn${id}`).style.display = "block";
         document.getElementById(`replyBtn${id}`).style.display = "block";
         document.getElementById(`content${id}`).style.display = "block";
+        let content = document.getElementById(`content${id}`).innerText;
+        document.getElementById(`updateContent${id}`).value = content;
         document.getElementById(`updateContentDiv${id}`).style.display = "none";
         document.getElementById(`updateContentBtn${id}`).style.display = "none";
     })
@@ -101,34 +103,38 @@ const Reply = (id, e) => {
     document.getElementById(`replyCancel${id}`).addEventListener("click", (e) => {
         e.preventDefault();
         document.getElementById(`replyForm${id}`).style.display = "none";
+        document.getElementById(`replyContent${id}`).value = '';
     })
-    document.getElementById(`replySave${id}`).addEventListener('click', e => {
-        e.preventDefault();
-        const content = document.getElementById(`replyContent${id}`).value;
-        const memberId = document.getElementById('authMember').dataset.id;
-        if (!content) {
-            return alert('답글을 입력해주세요');
-        }
-        fetch(`/reply`, {
-            method: 'post',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                recruitId: recruitId,
-                content: content,
-                parent: id,
-                memberId: memberId,
-            }),
-        })
-            .then(() => {
-                getReplies(recruitId);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    });
 }
+
+//답글 저장 로직
+function replySave(id, e) {
+    e.preventDefault();
+    const content = document.getElementById(`replyContent${id}`).value;
+    const memberId = document.getElementById('authMember').dataset.id;
+    if (!content) {
+        return alert('답글을 입력해주세요');
+    }
+    fetch(`/reply`, {
+        method: 'post',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            recruitId: recruitId,
+            content: content,
+            parent: id,
+            memberId: memberId,
+        }),
+    })
+        .then(() => {
+            getReplies(recruitId);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
 
 //댓글 리스트 가져오기
 function getReplies(id) {
@@ -151,9 +157,9 @@ document.querySelector('body').addEventListener('click', (e) => {
     if (!target.dataset.auth) {
         return;
     }
-    if (target.dataset.auth == 'false') {
+    if (target.dataset.auth === 'false') {
         document.getElementById('content').readOnly = true;
-        if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") == true) {
+        if (confirm("로그인 하신 후 이용해 주시기 바랍니다.") === true) {
             location.href = "/oauth/login";
         } else {
             return;
