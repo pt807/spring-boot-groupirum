@@ -1,6 +1,5 @@
 const div = document.querySelector('#replyDiv');
 const recruitId = document.getElementById('recruitId').value;
-const replyId = document.getElementById('replyId').value;
 
 //댓글 작성 로직
 document.getElementById('reply-form').addEventListener('submit', async (e) => {
