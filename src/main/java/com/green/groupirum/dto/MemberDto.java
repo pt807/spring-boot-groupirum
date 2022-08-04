@@ -19,6 +19,8 @@ public class MemberDto {
 
     private String nicknameOrig;
 
+    private String profileImage;
+
     private String social;
 
     private String providerId;
@@ -26,11 +28,12 @@ public class MemberDto {
     private MemberRole role;
 
     @Builder
-    public MemberDto(Long id, String email, String nickname, String nicknameOrig, String social, String providerId, MemberRole role) {
+    public MemberDto(Long id, String email, String nickname, String nicknameOrig, String profileImage, String social, String providerId, MemberRole role) {
         this.id = id;
         this.email = email;
         this.nickname = nickname;
         this.nicknameOrig = nicknameOrig;
+        this.profileImage = profileImage;
         this.social = social;
         this.providerId = providerId;
         this.role = role;

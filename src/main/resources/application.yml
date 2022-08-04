@@ -8,6 +8,11 @@ spring:
       filter:
         enabled: true
 
+  servlet:
+    multipart:
+      enabled: true
+      location: C:\dev\springboot-groupirum\src\main\resources\static\images\upload
+
   h2:
     console:
       enabled: true

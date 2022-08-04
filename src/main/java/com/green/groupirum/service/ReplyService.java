@@ -8,6 +8,8 @@ import com.green.groupirum.repository.MemberRepository;
 import com.green.groupirum.repository.RecruitRepository;
 import com.green.groupirum.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,10 @@ public class ReplyService {
     public List<Reply> getReplyList(Long recruitId) {
         List<Reply> replyList = replyRepository.findAllByRecruitId(recruitId);
         return replyList;
+    }
+
+    public Page<Reply> getReplyByMemberNickname(String nickname, Pageable pageable) {
+        return replyRepository.findAllByMember_Nickname(nickname, pageable);
     }
 
     @Transactional
