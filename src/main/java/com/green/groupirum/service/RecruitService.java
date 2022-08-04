@@ -9,6 +9,8 @@ import com.green.groupirum.repository.GameRepository;
 import com.green.groupirum.repository.MemberRepository;
 import com.green.groupirum.repository.RecruitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,10 @@ public class RecruitService {
             recruitDtoList.add(recruitDto);
         }
         return recruitDtoList;
+    }
+
+    public Page<Recruit> recruitPage(Pageable pageable) {
+        return recruitRepository.findAll(pageable);
     }
 
     public RecruitDto getRecruit(Long id) {

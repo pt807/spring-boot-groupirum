@@ -39,7 +39,7 @@
         <h4 class="u-text u-text-6" th:text="${recruit.personnel}"></h4>
         <h4 class="u-text u-text-default u-text-7">모집 게임</h4>
         <h4 class="u-text u-text-8" th:text="${#temporals.format(recruit.recruitDate, 'YYYY-MM-dd')}"></h4>
-        <a th:href="${recruit.contactAddress}" target = "_blank"><h4 class="u-text u-text-9" th:text="${recruit.contact} + '&nbsp🔍'"></h4></a>
+        <a th:href="${recruit.contactAddress}" target = "_blank"><h4 class="u-text u-text-9" th:text="${recruit.contact} + '&nbsp🔍'" style="inline-size: max-content"></h4></a>
         <h4 class="u-text u-text-default u-text-10">시작 날짜</h4>
         <h4 class="u-text u-text-default u-text-11">연락 수단</h4>
         <h2 class="u-text u-text-default u-text-12">파티 소개</h2>
