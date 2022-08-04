@@ -2,8 +2,8 @@ textarea, p{
   white-space: pre-line;
 }
 
-.u-section-1 .u-sheet-1 {
-  min-height: 2238px;
+.u-section-1 {
+  margin-bottom: 100px;
 }
 
 .u-section-1 .u-image-1 {
@@ -168,10 +168,6 @@ textarea, p{
 }
 
 @media (max-width: 1199px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 2157px;
-  }
-
   .u-section-1 .u-image-1 {
     margin-top: 155px;
     margin-left: 78px;
@@ -350,10 +346,6 @@ textarea, p{
 }
 
 @media (max-width: 991px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 2358px;
-  }
-
   .u-section-1 .u-image-1 {
     margin-top: 137px;
     margin-left: 64px;
@@ -517,10 +509,6 @@ textarea, p{
 }
 
 @media (max-width: 767px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 2395px;
-  }
-
   .u-section-1 .u-image-1 {
     margin-top: 156px;
     margin-left: 52px;
@@ -689,10 +677,6 @@ textarea, p{
 }
 
 @media (max-width: 575px) {
-  .u-section-1 .u-sheet-1 {
-    min-height: 2271px;
-  }
-
   .u-section-1 .u-image-1 {
     margin-top: 135px;
     margin-left: 22px;
