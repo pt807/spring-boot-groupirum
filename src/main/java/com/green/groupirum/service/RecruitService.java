@@ -68,6 +68,10 @@ public class RecruitService {
         return recruitDto;
     }
 
+    public Page<Recruit> getRecruitByMemberNickname(String nickname, Pageable pageable) {
+        return recruitRepository.findAllByMember_Nickname(nickname, pageable);
+    }
+
     @Transactional
     public void saveRecruit(RecruitForm recruitForm) {
         Long memberId = Long.parseLong(recruitForm.getMemberId());

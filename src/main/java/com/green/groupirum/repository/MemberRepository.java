@@ -12,4 +12,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     long countBySocialIgnoreCase(String social);
 
     boolean existsByNickname(String nickname);
+
+    Optional<Member> findByNickname(String nickname);
 }

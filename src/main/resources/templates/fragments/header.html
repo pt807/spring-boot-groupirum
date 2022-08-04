@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<header th:fragment="header" class="u-clearfix u-header u-header" id="sec-540d">
+<header th:fragment="header" class="u-clearfix u-header" id="sec-540d">
     <div class="u-clearfix u-sheet u-sheet-1">
         <a href="/" class="u-image u-logo u-image-1" data-image-width="346" data-image-height="63">
             <img src="/images/groupirumiconbk.png" class="u-logo-image u-logo-image-1">
@@ -32,7 +32,7 @@
                     </li>
                     <li class="u-nav-item"><a
                             class="u-border-2 u-border-active-grey-90 u-border-hover-custom-color-1 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-grey-90 u-text-grey-90 u-text-hover-grey-90"
-                            href="/" style="padding: 10px 0px;">마이페이지</a>
+                            href="/mypage" style="padding: 10px 0px;">마이페이지</a>
                     </li>
                     <li class="u-nav-item">
                         <a sec:authorize="isAnonymous()"
@@ -52,7 +52,7 @@
                         <ul class="u-align-center u-nav u-popupmenu-items u-spacing-5 u-unstyled u-nav-2">
                             <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/recruit/save">모집하기</a>
                             </li>
-                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/">마이페이지</a>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="/mypage">마이페이지</a>
                             </li>
                             <li class="u-nav-item">
                                 <a sec:authorize="isAnonymous()" class="u-button-style u-nav-link" href="/oauth/login">로그인</a>

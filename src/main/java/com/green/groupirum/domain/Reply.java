@@ -59,7 +59,11 @@ public class Reply extends TimeEntity {
     }
 
     public void setMember(Member member) {
+        if (this.member != null) {
+            this.member.getReplyList().remove(this);
+        }
         this.member = member;
+        member.getReplyList().add(this);
     }
 
     @Builder

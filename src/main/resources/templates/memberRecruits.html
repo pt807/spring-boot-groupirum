@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="ko">
+<head th:replace="fragments/head :: head('작성글', 'memberRecruits.css')"></head>
+<body class="u-body u-stick-footer u-xl-mode">
+
+<!-- 부트스트랩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<header th:replace="fragments/header :: header"></header>
+<section class="u-border-1 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1"
+         id="sec-34bb">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h4 class="u-align-center u-text u-text-default u-text-1">작성글</h4>
+    </div>
+</section>
+<section class="u-clearfix u-section-2" id="sec-1211">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-table u-table-responsive u-table-1">
+            <table class="u-table-entity">
+                <colgroup>
+                    <col width="10%">
+                    <col width="16%">
+                    <col width="50%">
+                    <col width="16%">
+                    <col width="8%">
+                </colgroup>
+                <thead class="u-align-center u-custom-color-1 u-table-header u-text-black u-table-header-1">
+                <tr style="height: 60px;">
+                    <th class="u-border-2 u-border-grey-50 u-border-no-left u-border-no-right u-table-cell">번호</th>
+                    <th class="u-border-2 u-border-grey-50 u-border-no-left u-border-no-right u-table-cell">게임</th>
+                    <th class="u-border-2 u-border-grey-50 u-border-no-left u-border-no-right u-table-cell">제목</th>
+                    <th class="u-border-2 u-border-grey-50 u-border-no-left u-border-no-right u-table-cell">작성일</th>
+                    <th class="u-border-2 u-border-grey-50 u-border-no-left u-border-no-right u-table-cell">조회수</th>
+                </tr>
+                </thead>
+                <tbody class="u-align-center u-table-body u-table-body-1">
+                    <tr th:each="recruit : ${recruitPage}" style="height: 70px;">
+                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-first-column u-table-cell">
+                            <span th:text="${recruit.id}">번호</span>
+                        </td>
+                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                            <span th:text="${recruit.game.name}">게임</span>
+                        </td>
+                        <td class="u-align-left u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-table-cell-8">
+                            <a th:href="@{|/recruit/${recruit.id}|}" th:text="${recruit.title}">제목</a>
+                        </td>
+                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                            <span th:text="${#temporals.format(recruit.createdDate, 'yyyy-MM-dd HH:mm')}">작성일</span>
+                        </td>
+                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                            <span th:text="${recruit.views}">조회수</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-section-3" style="margin-bottom: 60px;">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" th:if="${nowPage > 1}" th:href="@{|?page=0|}">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" th:if="${nowPage > 1}" th:href="@{|?page=${nowPage - 2}|}">&lsaquo;</a></li>
+
+        <th:block th:if="${totalPage <= 10}" th:each ="i : ${#numbers.sequence(1, totalPage)}">
+            <li class="page-item"><a class="page-link" th:if="${i != nowPage}" th:href="@{|?page=${i - 1}|}" th:text="${i}"></a></li>
+            <li class="page-item" aria-current="page"><a class="page-link text-white" style="background-color: #bb99ff;" th:if="${i == nowPage}" th:text="${i}"></a></li>
+        </th:block>
+
+        <th:block th:if="${totalPage > 10}">
+            <th:block th:if="${nowPage <= 6}" th:each ="i : ${#numbers.sequence(startPage, 10)}">
+                <li class="page-item"><a class="page-link" th:if="${i != nowPage}" th:href="@{|?page=${i - 1}|}" th:text="${i}"></a></li>
+                <li class="page-item" aria-current="page"><a class="page-link text-white" style="background-color: #bb99ff;" th:if="${i == nowPage}" th:text="${i}"></a></li>
+            </th:block>
+            <th:block th:if="${nowPage > 6}" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                <li class="page-item"><a class="page-link" th:if="${page != nowPage}" th:href="@{|?page=${page - 1}|}" th:text="${page}"></a></li>
+                <li class="page-item" aria-current="page"><a class="page-link text-white" style="background-color: #bb99ff;" th:if="${page == nowPage}"  th:text="${page}"></a></li>
+            </th:block>
+        </th:block>
+
+        <li class="page-item"><a class="page-link" th:if="${nowPage < totalPage}" th:href="@{|?page=${nowPage}|}">&rsaquo;</a></li>
+        <li class="page-item"><a class="page-link" th:if="${nowPage < totalPage}" th:href="@{|?page=${totalPage - 1}|}">&raquo;</a></li>
+    </ul>
+</section>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

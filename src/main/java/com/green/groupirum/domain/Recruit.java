@@ -72,6 +72,14 @@ public class Recruit extends TimeEntity {
         this.game = recruitForm.getGame();
     }
 
+    public void setMember(Member member) {
+        if (this.member != null) {
+            this.member.getRecruitList().remove(this);
+        }
+        this.member = member;
+        member.getRecruitList().add(this);
+    }
+
     @Builder
     public Recruit(Long id, String title, String content, int personnel, String contact, String contactAddress, RecruitStatus status, int views, LocalDate recruitDate, Member member, Game game, List<Reply> replyList) {
         this.id = id;

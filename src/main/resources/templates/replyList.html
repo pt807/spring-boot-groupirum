@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" style="font-size: 16px;" lang="ko">
 
 <div id="replyList">
-    <div th:each="reply : ${replyList}">
+    <div th:each="reply : ${replyList}" th:id="${'reply' + reply.id}">
         <input type="hidden" id="replyId" th:value="${reply.id}">
         <th:block th:if="${reply.parent} == null">
             <p class="u-small-text u-text u-text-variant u-text-14" th:text="${reply.member.getNickname()}"></p>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="ko">
+<head th:replace="fragments/head :: head('마이페이지', 'myPage.css')"></head>
+<body class="u-body u-stick-footer u-xl-mode">
+<header th:replace="fragments/header :: header"></header>
+<section class="u-border-1 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1"
+         id="sec-469b">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-gutter-14 u-layout-wrap u-layout-wrap-1">
+            <div class="u-gutter-0 u-layout">
+                <div class="u-layout-row">
+                    <div class="u-size-24-lg u-size-24-xl u-size-31-sm u-size-31-xs u-size-60-md">
+                        <div class="u-layout-row">
+                            <div class="u-align-left u-container-style u-hover-feature u-layout-cell u-left-cell u-radius-20 u-shape-round u-size-60 u-layout-cell-1"
+                                 src="">
+                                <div class="u-border-1 u-border-grey-50 u-container-layout u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-container-layout-1"
+                                     src="">
+                                    <div class="u-image u-image-circle u-preserve-proportions u-image-1" alt=""
+                                         data-image-width="150" data-image-height="100"
+                                         th:style="'background-image:url(' + @{http://localhost:8080/images/{path}(path=${member.profileImage})} + ');'"></div>
+                                    <h2 class="u-text u-text-default u-text-1" th:text="${member.nickname}">
+                                        nickname</h2>
+                                    <h5 class="u-text u-text-default u-text-2" th:text="${member.email}">email</h5>
+                                    <a href="/member/update"
+                                       class="u-align-right u-btn u-btn-round u-button-style u-custom-color-1 u-radius-6 u-btn-3">수정</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-size-29-sm u-size-29-xs u-size-36-lg u-size-36-xl u-size-60-md">
+                        <div class="u-layout-col">
+                            <div class="u-align-left u-container-style u-layout-cell u-radius-20 u-right-cell u-shape-round u-size-40 u-layout-cell-2">
+                                <div class="u-border-1 u-border-grey-50 u-container-layout u-container-layout-2" src="">
+                                    <h2 class="u-text u-text-default u-text-3">작성글</h2>
+                                    <ul class="u-text u-text-4">
+                                        <li th:each="recruit : ${recruitList}">
+                                            <a th:href="@{/recruit/{id}(id=${recruit.id})}" th:text="${recruit.title}">작성글</a>
+                                        </li>
+                                    </ul>
+                                    <a th:if="${!#lists.isEmpty(recruitList)}" th:href="@{|/member/${member.nickname}/recruits|}"
+                                       class="u-border-2 u-border-palette-1-base u-btn u-button-style u-none u-btn-1">more</a>
+                                </div>
+                            </div>
+                            <div class="u-align-left u-container-style u-layout-cell u-radius-20 u-right-cell u-shape-round u-size-40 u-layout-cell-3"
+                                 src="">
+                                <div class="u-border-1 u-border-grey-50 u-container-layout u-container-layout-3">
+                                    <h2 class="u-text u-text-default u-text-5">댓글</h2>
+                                    <ul class="u-text u-text-6">
+                                        <li th:each="reply : ${replyList}">
+                                            <a th:href="@{|/recruit/${reply.recruit.id}#reply${reply.id}|}"
+                                               th:text="${reply.content}">댓글</a>
+                                        </li>
+                                    </ul>
+                                    <a th:if="${!#lists.isEmpty(replyList)}" th:href="@{|/member/${member.nickname}/replies|}"
+                                       class="u-border-2 u-border-palette-1-base u-btn u-button-style u-none u-btn-2">more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      style="font-size: 16px;" lang="ko">
+<head th:replace="fragments/head :: head('사용자 정보 수정', 'memberUpdateForm.css')"></head>
+<body class="u-body u-stick-footer u-xl-mode">
+<header th:replace="fragments/header :: header"></header>
+<section class="u-border-1 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1"
+         id="sec-92dd">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <h4 class="u-text u-text-default u-text-1">사용자 정보 수정</h4>
+        <div class="u-align-center u-border-1 u-border-grey-50 u-container-style u-group u-radius-20 u-shape-round u-group-1">
+            <div class="u-container-layout">
+                <div class="u-align-center u-form u-form-1"
+                     th:with="src=@{http://localhost:8080/images/{path}(path=${member.profileImage})}">
+                    <form style="padding: 10px;" id="update-form"
+                          th:action="@{/member/{id}(id=${#authentication.principal.member.id})}"
+                          method="#" th:method="PUT"
+                          class="u-clearfix u-inner-form u-form-spacing-10 u-form-vertical2 u-form-custom-backend"
+                          enctype="multipart/form-data">
+                        <div id="profileImage" class="u-image u-image-circle u-image-1" alt="" data-image-width="1280"
+                             data-image-height="853" th:style="'background-image:url(' + ${src} + ');'"
+                             th:data-src="${src}"></div>
+                        <div class="u-form-file-upload u-form-group u-form-group-1">
+                            <label for="file" class="u-label u-btn u-button-style u-color-5" style="float: left">사진 변경
+                            </label>
+                            <input type="file" id="file" name="file" accept="image/jpeg, image/png"
+                                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <input type="hidden" id="isDeleted" name="isDeleted" value="false">
+                            <button type="button" class="u-btn u-btn-1 u-button-style u-color-5"
+                                    id="profileImageDeleteBtn"
+                                    th:disabled="${#strings.equals(src, 'http://localhost:8080/images/profile_image_default.png')}">
+                                삭제
+                            </button>
+                        </div>
+                        <div class="u-form-group u-form-name">
+                            <label for="nickname" class="u-label">닉네임</label>
+                            <input type="text" id="nickname" name="nickname" th:value="${member.nickname}"
+                                   th:data-nickname="${member.nickname}" minlength="2" maxlength="12"
+                                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                        </div>
+                        <div class="u-align-right u-form-group u-form-submit">
+                            <button type="button" id="cancelBtn"
+                                    class="u-btn u-btn-round u-btn-submit u-button-style u-color-5 u-radius-20"
+                                    onclick="location.href='/mypage'">취소
+                            </button>
+                            <a href="#" style="margin: 20px auto;"
+                               class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-text-black u-radius-20">설정완료<br>
+                            </a>
+                            <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="fragments/footer :: footer"></footer>
+<script src="/js/memberUpdateForm.js"></script>
+</body>
+</html>
