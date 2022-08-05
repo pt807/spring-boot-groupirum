@@ -36616,7 +36616,7 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-button-style.u-custom-color-1[class*="u-border-"]
         {
             color: #ffffff !important;
-            background-color: #bb99ff !important;
+            background-color: #bb99ff;
             margin-bottom: 100px;
         }
 
