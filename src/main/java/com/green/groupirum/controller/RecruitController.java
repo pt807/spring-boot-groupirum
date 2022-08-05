@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -21,10 +24,34 @@ public class RecruitController {
     private final ReplyService replyService;
 
     @GetMapping("/recruit/{id}")
-    public String recruitView(@PathVariable("id") Long id, Model model) {
+    public String recruitView(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Cookie oldCookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("recruitView")) {
+                    oldCookie = cookie;
+                }
+            }
+        }
+        if (oldCookie != null) {
+            if (!oldCookie.getValue().contains("[" + id.toString() + "]")) {
+                recruitService.updateViews(id);
+                oldCookie.setValue(oldCookie.getValue() + "_[" + id + "]");
+                oldCookie.setPath("/");
+                oldCookie.setMaxAge(60 * 60 * 24);
+                response.addCookie(oldCookie);
+            }
+        } else {
+            recruitService.updateViews(id);
+            Cookie newCookie = new Cookie("recruitView", "[" + id + "]");
+            newCookie.setPath("/");
+            newCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(newCookie);
+        }
+
         RecruitDto recruitDto = recruitService.getRecruit(id);
         List<Reply> replyList = replyService.getReplyList(id);
-        recruitService.updateViews(id);
         model.addAttribute("recruit", recruitDto);
         model.addAttribute("replyList", replyList);
 

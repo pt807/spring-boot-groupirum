@@ -95,6 +95,7 @@ public class RecruitService {
         recruit.updateRecruit(recruitForm);
     }
 
+    @Transactional
     public int updateViews(Long id) {
         return recruitRepository.updateViews(id);
     }
