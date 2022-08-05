@@ -1,32 +1,49 @@
-// let lastId = 0;
-// const TABLE_ELE = document.querySelector("table");
-//
-// const drawList = (DATA) => {
-//     let recruitHtml = "";
-//     DATA.forEach((item, index) => {
-//         const { id, data1, data2, data3, data4, data5, data6, data7 } = item;
-//         const TR_ELE = document.createElement('tr');
-//         recruitHtml = `<td>${data1}</td>
-//                     <td>${data2}</td>
-//                     <td>${data3}</td>
-//                     <td>${data4}</td>
-//                     <td>${data5}</td>
-//                     <td>${data6}</td>
-//                     <td>${data7}</td>`;
-//
-//         if (index === DATA.length - 1) lastId = id; // 마지막건 ID 저장
-//
-//         TR_ELE.innerHtml = recruitHtml;
-//         TABLE_ELE.appendChild(TR_ELE);
-//     });
-// };
+let page = 0;
+let gameName = '';
+
+document.addEventListener('DOMContentLoaded', () => {
+    getCard();
+    page++;
+
+});
+
+document.getElementById(`all`).addEventListener('click', (e) => {
+    e.preventDefault();
+    gameName = '';
+    page = 0;
+    document.getElementById(`recruitCards`).innerHTML = '';
+    getCard();
+})
+
+document.getElementById(`overwatch`).addEventListener('click', (e) => {
+    e.preventDefault();
+    gameName = '오버워치';
+    page = 0;
+    document.getElementById(`recruitCards`).innerHTML = '';
+    getCard();
+})
+
+document.getElementById(`League of Legends`).addEventListener('click', (e) => {
+    e.preventDefault();
+    gameName = '리그오브레전드';
+    page = 0;
+    document.getElementById(`recruitCards`).innerHTML = '';
+    getCard();
+})
+
+document.getElementById(`battle ground`).addEventListener('click', (e) => {
+    e.preventDefault();
+    gameName = '배틀그라운드';
+    page = 0;
+    document.getElementById(`recruitCards`).innerHTML = '';
+    getCard();
+})
+
 let isFetching = false;
-let page = 1;
+
 function getCard() {
     isFetching = true;
-    fetch(`/recruitCard?page=${page}`, {
-        method: "get",
-    })
+    fetch(`/recruitCard?page=${page}&gameName=${gameName}`)
         .then((res) => res.text())
         .then((text) => {
             if (text != '') {

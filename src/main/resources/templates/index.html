@@ -17,7 +17,15 @@
             <div class="u-repeater u-repeater-1">
                 <div class="u-align-left-sm u-align-left-xs u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-1">
                     <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-1">
-                        <a href="/ "
+                        <a href="#" id="all"
+                           class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-1">
+                            <span class="u-file-icon u-icon u-icon-1"></span>all
+                        </a>
+                    </div>
+                </div>
+                <div class="u-align-left-sm u-align-left-xs u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-1">
+                    <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-1">
+                        <a href="#" id="overwatch"
                            class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-1">
                             <span class="u-file-icon u-icon u-icon-1"><img src="/images/overWatch.png"></span>&nbsp;overwatch
                         </a>
@@ -25,15 +33,15 @@
                 </div>
                 <div class="u-align-left-sm u-align-left-xs u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-2">
                     <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-2">
-                        <a href="/"
-                           class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-2" style="margin-left: 6px;">
+                        <a href="#" id="League of Legends"
+                           class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-2">
                             <span class="u-file-icon u-icon u-icon-2"><img src="/images/lolIcon.png"></span>&nbsp;League of Legends
                         </a>
                     </div>
                 </div>
                 <div class="u-align-left-sm u-align-left-xs u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-3">
                     <div class="u-container-layout u-similar-container u-valign-top-sm u-valign-top-xs u-container-layout-3">
-                        <a href="/"
+                        <a href="#" id="battle ground"
                            class="u-border-2 u-border-grey-40 u-border-hover-palette-5-dark-3 u-btn u-btn-round u-button-style u-custom-item u-none u-radius-19 u-text-body-color u-btn-3">
                             <span class="u-file-icon u-icon u-icon-3"><img src="/images/battleGroundIcon.png"></span>&nbsp;battle ground
                         </a>
@@ -43,58 +51,11 @@
         </div>
         <div class="u-expanded-width u-list u-list-2">
             <div id="recruitCards" class="u-repeater u-repeater-2">
-                <th:block th:each="recruit : ${recruitList}">
-                    <a th:href="@{'/recruit/' + ${recruit.id}}">
-                        <div class="u-border-2 u-border-grey-25 u-container-style u-hover-feature u-list-item u-radius-20 u-repeater-item u-shape-round u-list-item-4" style=" overflow-x: hidden; overflow-y: hidden">
-                            <div class="u-container-layout u-similar-container u-container-layout-4">
-                                <th:block th:if="${#strings.equals(recruit.game.getName(), '오버워치')}">
-                                    <img class="u-image u-image-circle u-preserve-proportions u-image-1"
-                                         src="/images/overWatch.png?rand=2bc" data-image-width="512" data-image-height="512">
-                                </th:block>
-                                <th:block th:if="${#strings.equals(recruit.game.getName(), '리그오브레전드')}">
-                                    <img class="u-image u-image-circle u-preserve-proportions u-image-1"
-                                         src="/images/lolIcon.png?rand=2bc1" data-image-width="512" data-image-height="512">
-                                </th:block>
-                                <th:block th:if="${#strings.equals(recruit.game.getName(), '배틀그라운드')}">
-                                    <img class="u-image u-image-circle u-preserve-proportions u-image-1"
-                                         src="/images/battleGroundIcon.png?rand=2bc1" data-image-width="512" data-image-height="512">
-                                </th:block>
-                                <p class="u-align-center u-small-text u-text u-text-variant u-text-1"><span th:text="${#temporals.format(recruit.createdDate, 'yyyy-MM-dd')}"></span></p>
-                                <h4 class="u-align-left u-subtitle u-text u-text-2"
-                                    style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-all; overflow: hidden;">
-                                    <span th:text="${recruit.title}"></span>
-                                </h4>
-                                <div style="margin-bottom: 10px">
-                                    <span class="u-file-icon u-icon u-icon-4" ><img src="/images/viewIcon.png">
-                                        <p class="u-text u-text-3" th:text="${recruit.views}" style="width: 30px; margin-left: 24px; margin-top: -10px"></p></span>
-                                    <span class="u-file-icon u-icon u-icon-5"><img src="/images/replyIcon.png">
-                                        <p class="u-text u-text-5" th:text="${recruit.replyList.size()}" style="width: 30px; margin-left: 24px; margin-top: -10px"></p></span>
-                                    <p class="u-text u-text-default u-text-3" >작성자:&nbsp;<span th:text="${recruit.member.getNickname()}"></span><br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </th:block>
             </div>
         </div>
     </div>
 </section>
-<!--<script>-->
-<!--    const button = document.querySelectorAll('.u-btn-1');-->
-<!--    const list = document.querySelectorAll('.u-list-2')-->
-
-<!--    button.forEach((button) => {-->
-<!--        button.addEventListener('click', (e) => {-->
-<!--            e.preventDefault();-->
-<!--            const filter = e.target.dataset.filter-->
-
-<!--            list.forEach((item) => {-->
-<!--                if(filter === )-->
-<!--            })-->
-<!--        })-->
-<!--    })-->
-<!--</script>-->
-<footer th:replace="fragments/footer :: footer"></footer>_
+<footer th:replace="fragments/footer :: footer"></footer>
 <script src="/js/index.js"></script>
 </body>
 </html>
