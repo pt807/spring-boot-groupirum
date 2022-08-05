@@ -1,7 +1,6 @@
 package com.green.groupirum.controller;
 
 import com.green.groupirum.domain.Recruit;
-import com.green.groupirum.dto.RecruitDto;
 import com.green.groupirum.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
