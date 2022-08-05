@@ -49,6 +49,10 @@ public class RecruitService {
         return recruitRepository.findAll(pageable);
     }
 
+    public Page<Recruit> gameNamePage(String gameName, Pageable pageable) {
+        return recruitRepository.findAllByGame_Name(gameName, pageable);
+    }
+
     public RecruitDto getRecruit(Long id) {
         Recruit recruit = recruitRepository.findById(id).get();
         RecruitDto recruitDto = RecruitDto.builder()
@@ -95,6 +99,7 @@ public class RecruitService {
         recruit.updateRecruit(recruitForm);
     }
 
+    @Transactional
     public int updateViews(Long id) {
         return recruitRepository.updateViews(id);
     }

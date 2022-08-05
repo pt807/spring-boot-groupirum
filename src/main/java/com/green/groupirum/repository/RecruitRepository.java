@@ -16,4 +16,6 @@ public interface RecruitRepository extends JpaRepository<Recruit, Long> {
 
     Page<Recruit> findAllByMember_Nickname(String nickname, Pageable pageable);
 
+    Page<Recruit> findAllByGame_Name(String gameName, Pageable pageable);
+
 }
