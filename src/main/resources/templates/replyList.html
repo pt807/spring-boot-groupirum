@@ -33,7 +33,7 @@
             <!--댓글 수정 폼-->
             <div style="display: none" th:id="'updateContentDiv' + ${reply.id}">
                         <textarea  class="u-text u-text-16" th:id="'updateContent' + ${reply.id}" th:text="${reply.content}"
-                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px"></textarea>
+                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px" maxlength="255"></textarea>
             </div>
             <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-3"></div>
 
@@ -48,7 +48,7 @@
                 </div>
                 <div th:id="'updateContentDiv' + ${reply.id}">
                             <textarea class="u-text u-text-16" th:id="'replyContent' + ${reply.id}"
-                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="&nbsp답글을 입력해주세요"></textarea>
+                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="답글을 입력해주세요" maxlength="255"></textarea>
                 </div>
                 <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>
             </div>
@@ -78,7 +78,7 @@
             <p class="u-text u-text-19" th:id="'content' + ${reply.id}" th:text="${reply.content}"></p>
             <div style="display: none" th:id="'updateContentDiv' + ${reply.id}">
                         <textarea  class="u-text u-text-16" th:id="'updateContent' + ${reply.id}" th:text="${reply.content}"
-                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px"></textarea>
+                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px" maxlength="255"></textarea>
             </div>
             <span class="u-file-icon u-icon u-icon-3"><img src="/images/reply.png"></span>
             <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>

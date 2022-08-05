@@ -74,13 +74,13 @@
                     <label for="text-f15c" class="u-form-control-hidden u-label u-label-5"></label>
                     <input type="text" id="text-f15c" name="contactAddress"
                            class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
-                           required="" placeholder="연락 수단의 주소를 입력해주세요. ex) https://discord.com" th:value="${recruit.contactAddress}">
+                           required="" placeholder="연락 수단의 주소를 입력해주세요. ex) https://discord.com" th:value="${recruit.contactAddress}" maxlength="255">
                 </div>
                 <div class="u-form-group u-form-group-6">
                     <label for="text-cf0f" class="u-label u-label-6">제목</label>
                     <input type="text" id="text-cf0f" name="title"
                            class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white"
-                           required="" th:value="${recruit.title}">
+                           required="" th:value="${recruit.title}" maxlength="50">
                 </div>
                 <div class="u-form-group u-form-textarea u-form-group-7">
                     <label for="textarea-1ac8" class="u-form-control-hidden u-label u-label-7"></label>

@@ -25,11 +25,11 @@
         <p class="u-small-text u-text u-text-variant u-text-3" th:text="${#temporals.format(recruit.createdDate, 'YYYY-MM-dd')}"></p>
         <div class="button-poison">
             <th:block sec:authorize="isAuthenticated()">
-                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" th:href="@{'/recruit/update/' + ${recruit.id}}"><p class="u-small-text u-text u-text-variant u-text-20">수정</p></a>
+                <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" th:href="@{'/recruit/update/' + ${recruit.id}}" style="display: contents"><p class="u-small-text u-text u-text-variant u-text-20" style="display: table">수정</p></a>
                 <form th:action="@{'/recruit/' + ${recruit.id}}" method="#" th:method="delete" id="form">
                     <!--RESTful API 작성을 위해 hiddenHttpMethodFilter를 이용함 form 태그의 method는 post이지만, 실제로는 컨트롤러에서 delete로 매핑-->
 <!--                    <input type="hidden" name="_method" value="delete"/>-->
-                    <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="#" th:onclick="submit(event)"><p class="u-small-text u-text u-text-variant u-text-21">삭제</p></a>
+                    <a th:if="${#authentication.principal.member.id} == ${recruit.member.id}" href="#" th:onclick="submit(event)" style="display: contents"><p class="u-small-text u-text u-text-variant u-text-21" style="display: table">삭제</p></a>
                 </form>
             </th:block>
         </div>
@@ -39,7 +39,7 @@
         <h4 class="u-text u-text-6" th:text="${recruit.personnel}"></h4>
         <h4 class="u-text u-text-default u-text-7">모집 게임</h4>
         <h4 class="u-text u-text-8" th:text="${#temporals.format(recruit.recruitDate, 'YYYY-MM-dd')}"></h4>
-        <a th:href="${recruit.contactAddress}" target = "_blank"><h4 class="u-text u-text-9" th:text="${recruit.contact} + '&nbsp🔍'" style="inline-size: max-content"></h4></a>
+        <a th:href="${recruit.contactAddress}" target = "_blank" style="display: flex"><h4 class="u-text u-text-9" th:text="${recruit.contact} + '&nbsp🔍'" style="inline-size: max-content"></h4></a>
         <h4 class="u-text u-text-default u-text-10">시작 날짜</h4>
         <h4 class="u-text u-text-default u-text-11">연락 수단</h4>
         <h2 class="u-text u-text-default u-text-12">파티 소개</h2>
@@ -55,9 +55,9 @@
                 <input type="hidden" id="recruitId" name="recruitId" th:value="${recruit.id}">
                 <div class="u-form-group u-form-message">
                     <label for="content" class="u-label" id="replyCount" th:text="${'댓글 ' + recruit.replyList.size() + '개'}"></label>
-                    <textarea placeholder="댓글을 입력하세요." rows="4" cols="50" id="content" name="message"
-                              class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-20 u-white"
-                              th:data-auth="${#authorization.expr('isAuthenticated()')}"></textarea>
+                        <textarea placeholder="댓글을 입력하세요." rows="4" cols="50" id="content" name="message"
+                                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-20 u-white"
+                                  th:data-auth="${#authorization.expr('isAuthenticated()')}" maxlength="255"></textarea>
                 </div>
                 <div class="u-align-right u-form-group u-form-submit">
                     <a class="u-btn u-btn-round u-btn-submit u-button-style u-custom-color-1 u-radius-20">Submit</a>
@@ -97,7 +97,7 @@
                     <!--댓글 수정 폼-->
                     <div style="display: none" th:id="'updateContentDiv' + ${reply.id}">
                         <textarea  class="u-text u-text-16" th:id="'updateContent' + ${reply.id}" th:text="${reply.content}"
-                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px"></textarea>
+                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px" maxlength="255"></textarea>
                     </div>
                     <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-3"></div>
 
@@ -112,7 +112,7 @@
                         </div>
                         <div th:id="'updateContentDiv' + ${reply.id}">
                             <textarea class="u-text u-text-16" th:id="'replyContent' + ${reply.id}"
-                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="&nbsp답글을 입력해주세요"></textarea>
+                                      style="height: 90px; width: 550px; resize: none; border-radius: 10px" placeholder="답글을 입력해주세요" maxlength="255"></textarea>
                         </div>
                         <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>
                     </div>
@@ -142,7 +142,7 @@
                     <p class="u-text u-text-19" th:id="'content' + ${reply.id}" th:text="${reply.content}"></p>
                     <div style="display: none" th:id="'updateContentDiv' + ${reply.id}">
                         <textarea  class="u-text u-text-16" th:id="'updateContent' + ${reply.id}" th:text="${reply.content}"
-                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px"></textarea>
+                                   style="height: 90px; width: 550px; resize: none; border-radius: 10px" maxlength="255"></textarea>
                     </div>
                     <span class="u-file-icon u-icon u-icon-3"><img src="/images/reply.png"></span>
                     <div class="u-border-2 u-border-grey-25 u-expanded-width-md u-expanded-width-sm u-line u-line-horizontal u-opacity u-opacity-70 u-line-4"></div>
