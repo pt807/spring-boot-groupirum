@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="ko">
-<head th:replace="fragments/head :: head('작성글', 'memberRecruits.css')"></head>
+<head th:replace="fragments/head :: head('댓글', 'memberReplies.css')"></head>
 <body class="u-body u-stick-footer u-xl-mode">
 
 <!-- 부트스트랩 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
 <header th:replace="fragments/header :: header"></header>
 <section class="u-border-1 u-border-black u-border-no-bottom u-border-no-left u-border-no-right u-clearfix u-section-1"
          id="sec-34bb">
@@ -33,20 +32,23 @@
                 </tr>
                 </thead>
                 <tbody class="u-align-center u-table-body u-table-body-1">
-                    <tr th:each="reply : ${replyPage}" style="height: 70px;">
-                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-first-column u-table-cell">
-                            <span th:text="${reply.id}">번호</span>
-                        </td>
-                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                            <a th:href="@{|/recruit/${reply.recruit.id}|}" th:text="${reply.recruit.id}">게시글</a>
-                        </td>
-                        <td class="u-align-left u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-table-cell-7">
-                            <a th:href="@{|/recruit/${reply.recruit.id}#reply${reply.id}|}" th:text="${reply.content}">내용</a>
-                        </td>
-                        <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                            <span th:text="${#temporals.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}">작성일</span>
-                        </td>
-                    </tr>
+                <tr th:each="reply : ${replyPage}" style="height: 70px;">
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-first-column u-table-cell">
+                        <span th:text="${reply.id}">번호</span>
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        <a th:href="@{|/recruit/${reply.recruit.id}|}" th:text="${reply.recruit.id}">게시글</a>
+                    </td>
+                    <td class="u-align-left u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell u-table-cell-7">
+                        <a style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; word-break: break-all; overflow: hidden;"
+                           th:href="@{|/recruit/${reply.recruit.id}#reply${reply.id}|}" th:text="${reply.content}">
+                            내용
+                        </a>
+                    </td>
+                    <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                        <span th:text="${#temporals.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}">작성일</span>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>

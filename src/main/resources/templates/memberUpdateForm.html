@@ -11,7 +11,7 @@
         <div class="u-align-center u-border-1 u-border-grey-50 u-container-style u-group u-radius-20 u-shape-round u-group-1">
             <div class="u-container-layout">
                 <div class="u-align-center u-form u-form-1"
-                     th:with="src=@{http://localhost:8080/images/{path}(path=${member.profileImage})}">
+                     th:with="src=${member.profileImage}">
                     <form style="padding: 10px;" id="update-form"
                           th:action="@{/member/{id}(id=${#authentication.principal.member.id})}"
                           method="#" th:method="PUT"
@@ -28,7 +28,7 @@
                             <input type="hidden" id="isDeleted" name="isDeleted" value="false">
                             <button type="button" class="u-btn u-btn-1 u-button-style u-color-5"
                                     id="profileImageDeleteBtn"
-                                    th:disabled="${#strings.equals(src, 'http://localhost:8080/images/profile_image_default.png')}">
+                                    th:disabled="${#strings.equals(src, 'https://groupirum-bucket.s3.ap-northeast-2.amazonaws.com/profile_image_default.png')}">
                                 삭제
                             </button>
                         </div>
