@@ -1,37 +1,43 @@
 package com.green.groupirum.service;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class FileService {
 
-    @Value("${spring.servlet.multipart.location}")
-    private String uploadDir;
+    private final AmazonS3 amazonS3;
 
-    public String fileUpload(MultipartFile file) {
-        String fileName = UUID.randomUUID() + "_" + StringUtils.cleanPath(file.getOriginalFilename());
-        String path = uploadDir + File.separator + fileName;
-        Path copyOfLocation = Paths.get(path);
+    @Value("${cloud.aws.s3.bucket}")
+    private String bucket;
+
+    public String fileUpload(MultipartFile multipartFile) {
+        String fileName = UUID.randomUUID() + "_" + StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+        // S3 파일 업로드
         try {
-            Files.probeContentType(copyOfLocation);
-            Files.copy(file.getInputStream(), copyOfLocation, StandardCopyOption.REPLACE_EXISTING);
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentType(multipartFile.getContentType());
+            amazonS3.putObject(new PutObjectRequest(bucket, fileName, multipartFile.getInputStream(), metadata)
+                    .withCannedAcl(CannedAccessControlList.PublicRead));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return "upload/" + fileName;
+        return amazonS3.getUrl(bucket, fileName).toString();
     }
+
 }

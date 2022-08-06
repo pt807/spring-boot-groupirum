@@ -3,6 +3,9 @@ database: h2
 spring:
   profiles.include: oauth
 
+  config:
+    import: aws.yml
+
   mvc:
     hiddenmethod:
       filter:
@@ -11,7 +14,8 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: C:\dev\springboot-groupirum\src\main\resources\static\images\upload
+      max-file-size: 10MB
+      max-request-size: 10MB
 
   h2:
     console:
@@ -42,3 +46,7 @@ logging:
     org.hibernate:
       SQL: debug
       type.descriptor.sql: trace
+
+    com.amazonaws:
+      util:
+        EC2MetadataUtils: error

@@ -14,7 +14,7 @@ CREATE TABLE member (
     email VARCHAR(50) NOT NULL,
     nickname VARCHAR(12) NOT NULL,
     nickname_orig VARCHAR(255) NOT NULL,
-    profile_image VARCHAR(255) NOT NULL DEFAULT 'profile_image_default.png',
+    profile_image VARCHAR(255) NOT NULL DEFAULT 'https://groupirum-bucket.s3.ap-northeast-2.amazonaws.com/profile_image_default.png',
     provider_id VARCHAR(255) NOT NULL,
     social VARCHAR(255) NOT NULL,
     role VARCHAR(255),

@@ -17,10 +17,10 @@
                                      src="">
                                     <div class="u-image u-image-circle u-preserve-proportions u-image-1" alt=""
                                          data-image-width="150" data-image-height="100"
-                                         th:style="'background-image:url(' + @{http://localhost:8080/images/{path}(path=${member.profileImage})} + ');'"></div>
-                                    <h2 class="u-text u-text-default u-text-1" th:text="${member.nickname}">
-                                        nickname</h2>
-                                    <h5 class="u-text u-text-default u-text-2" th:text="${member.email}">email</h5>
+                                         th:style="'background-image:url(' + ${member.profileImage} + ');'"></div>
+                                    <h5 style="font-weight: bold" class="u-text u-text-default u-text-1" th:text="${member.nickname}">
+                                        nickname</h5>
+                                    <h6 class="u-text u-text-default u-text-2" th:text="${member.email}">email</h6>
                                     <a href="/member/update"
                                        class="u-align-right u-btn u-btn-round u-button-style u-custom-color-1 u-radius-6 u-btn-3">수정</a>
                                 </div>
@@ -32,9 +32,10 @@
                             <div class="u-align-left u-container-style u-layout-cell u-radius-20 u-right-cell u-shape-round u-size-40 u-layout-cell-2">
                                 <div class="u-border-1 u-border-grey-50 u-container-layout u-container-layout-2" src="">
                                     <h2 class="u-text u-text-default u-text-3">작성글</h2>
-                                    <ul class="u-text u-text-4">
+                                    <ul class="u-text u-text-4 c-list">
                                         <li th:each="recruit : ${recruitList}">
-                                            <a th:href="@{/recruit/{id}(id=${recruit.id})}" th:text="${recruit.title}">작성글</a>
+                                            <a th:href="@{/recruit/{id}(id=${recruit.id})}"
+                                               th:text="${'⦁ ' + recruit.title}">작성글</a>
                                         </li>
                                     </ul>
                                     <a th:if="${!#lists.isEmpty(recruitList)}" th:href="@{|/member/${member.nickname}/recruits|}"
@@ -45,10 +46,10 @@
                                  src="">
                                 <div class="u-border-1 u-border-grey-50 u-container-layout u-container-layout-3">
                                     <h2 class="u-text u-text-default u-text-5">댓글</h2>
-                                    <ul class="u-text u-text-6">
+                                    <ul class="u-text u-text-6 c-list">
                                         <li th:each="reply : ${replyList}">
                                             <a th:href="@{|/recruit/${reply.recruit.id}#reply${reply.id}|}"
-                                               th:text="${reply.content}">댓글</a>
+                                               th:text="${'⦁ ' + reply.content}">댓글</a>
                                         </li>
                                     </ul>
                                     <a th:if="${!#lists.isEmpty(replyList)}" th:href="@{|/member/${member.nickname}/replies|}"

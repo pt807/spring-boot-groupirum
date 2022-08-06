@@ -39,5 +39,5 @@ out/
 ### Application.yml ###
 application-oauth.yml
 
-### Upload ###
-/src/main/resources/static/images/upload/
+### AWS ###
+aws.yml

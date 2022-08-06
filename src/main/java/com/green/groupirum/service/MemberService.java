@@ -27,7 +27,7 @@ public class MemberService {
     public void updateMember(Long memberId, MemberUpdateRequestDto dto, AuthMemberDTO authMemberDTO) {
         Member member = memberRepository.findById(memberId).get();
         if (dto.getIsDeleted()) {    // 프로필 사진 삭제
-            member.updateProfileImage("profile_image_default.png");
+            member.updateProfileImage("https://groupirum-bucket.s3.ap-northeast-2.amazonaws.com/profile_image_default.png");
         } else if (!dto.getFile().isEmpty()) {   // 프로필 사진 업로드
             String fileName = fileService.fileUpload(dto.getFile());
             member.updateProfileImage(fileName);

@@ -44,7 +44,7 @@ profileImageDeleteBtn.addEventListener('click', () => {
     file.value = '';
     isDeleted.value = 'true';
     profileImageDeleteBtn.setAttribute('disabled', '');
-    profileImage.style.backgroundImage = 'url(http://localhost:8080/images/profile_image_default.png)';
+    profileImage.style.backgroundImage = 'url(https://groupirum-bucket.s3.ap-northeast-2.amazonaws.com/profile_image_default.png)';
 });
 
 window.onbeforeunload = function(e) {
