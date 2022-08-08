@@ -1,12 +1,14 @@
 # 그룹이룸
 
 ## 🙌 서비스 소개
-같이 게임 할 팀원을 구할 수 있습니다.
+그룹이룸은 팀 기반 게임의 팀원을 모집하기 위한 플랫폼입니다.
 
-지금 바로 모집 글을 등록하고 디스코드를 첨부하세요.
+팀원을 모집하기 위해 직접 글을 작성하거나, 다른 팀에 가입하기 위해
+
+모집글에 첨부된 연락처(디스코드, 오픈채팅)로 작성자와 연락할 수 있습니다.
 
 ## 📆 프로젝트 기간
-- 2022.07.06 ~ 
+- 2022.07.06 ~ 2022.08.08
 
 ## 👨‍👨‍👦‍👦️ 팀원
 
@@ -21,8 +23,8 @@
 #### 프론트엔드
 <div>
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
     <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white">
-    <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white">
     <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=for-the-badge&logo=Thymeleaf&logoColor=white">
 </div>
 
@@ -30,8 +32,16 @@
 <div>
     <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
     <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white">
+    <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white">
+    <img src="https://img.shields.io/badge/oauth2-345?style=for-the-badge&logo=oauth2&logoColor=white">
     <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=MariaDB&logoColor=white">
+    <img src="https://img.shields.io/badge/H2-003?style=for-the-badge&logo=H2&logoColor=white">
     <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white">
+    <img src="https://img.shields.io/badge/amazons3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
+    <img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonEC2&logoColor=white">
+    <img src="https://img.shields.io/badge/amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white">
+    
+
 </div>
 
 #### 
