@@ -184,7 +184,6 @@
 
 .u-section-2 .u-repeater-2 {
     grid-template-columns: calc(33.3333% - 53.3333px) calc(33.3333% - 53.3333px) calc(33.3333% - 53.3333px);
-    min-height: 885px;
     grid-gap: 80px 80px;
 }
 
@@ -438,10 +437,6 @@
 @media (max-width: 1199px) {
     .u-section-2 .u-list-1 {
         margin-left: 140px;
-    }
-
-    .u-section-2 .u-repeater-2 {
-        min-height: 730px;
     }
 
     .u-section-2 .u-container-layout-4 {
@@ -707,7 +702,6 @@
     }
 
     .u-section-2 .u-repeater-2 {
-        min-height: 1258px;
         grid-template-columns: calc(50% - 40px) calc(50% - 40px);
     }
 
@@ -909,7 +903,6 @@
     }
 
     .u-section-2 .u-repeater-2 {
-        min-height: 2279px;
         grid-template-columns: 100%;
     }
 
