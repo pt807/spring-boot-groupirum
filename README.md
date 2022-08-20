@@ -1,14 +1,21 @@
 # 그룹이룸
 
-## 🙌 서비스 소개
+![img.png](img.png)
+<br><br>
+
+## 🙌 서비스 소개 
 그룹이룸은 팀 기반 게임의 팀원을 모집하기 위한 플랫폼입니다.
 
 팀원을 모집하기 위해 직접 글을 작성하거나, 다른 팀에 가입하기 위해
 
 모집글에 첨부된 연락처(디스코드, 오픈채팅)로 작성자와 연락할 수 있습니다.
 
+[상세보기 링크 🔗](https://1drv.ms/p/s!AuJ-4-uBRTtH-1L-BivvkZ9iOqhD?e=ITUG3K)
+<br><br>
+
 ## 📆 프로젝트 기간
 - 2022.07.06 ~ 2022.08.08
+  <br><br>
 
 ## 👨‍👨‍👦‍👦️ 팀원
 
@@ -16,7 +23,7 @@
 |:-----------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
 | <img src="https://avatars.githubusercontent.com/u/63392063?v=4" width=100px/> | <img src="https://avatars.githubusercontent.com/u/52270259?v=4" width=100px/> |
 |                                    백엔드/프론트                                    |                                    백엔드/프론트                                    |
-
+<br><br>
 
 ## 🔨 기술스택
 
@@ -49,3 +56,4 @@
     <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"> 
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"> 
 </div>
+<br><br>
