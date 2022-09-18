@@ -11,7 +11,7 @@
 
 모집글에 첨부된 연락처(디스코드, 오픈채팅)로 작성자와 연락할 수 있습니다.
 
-[상세보기 링크 🔗](https://1drv.ms/p/s!AuJ-4-uBRTtH-1R-o_URurlMRyYR?e=CSZNLJ)
+[상세보기 링크 🔗](https://1drv.ms/p/s!AuJ-4-uBRTtH-1ZjIxIRgRSgoEuZ?e=9QqFkF)
 
 
 <br><br>
